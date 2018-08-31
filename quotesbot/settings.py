@@ -68,7 +68,7 @@ ROBOTSTXT_OBEY = True
 #  items go through from lower valued to higher valued classes. #
 #
 ITEM_PIPELINES = {
-   'quotesbot.pipelines.FilePipeline': 300
+   # 'quotesbot.pipelines.FilePipeline': 300
    # 'quotesbot.pipelines.QuotesbotPipeline': 301
 }
 

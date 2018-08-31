@@ -54,7 +54,6 @@ class FilePipeline(object):
         self.quote_file.write(json.dumps(dict(item)) + "\n")
 
 
-
 class MongoPipeline(object):
     collection_name = 'quotesd'
 

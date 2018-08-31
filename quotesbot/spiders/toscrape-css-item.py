@@ -8,6 +8,13 @@ class ToScrapeCSSSpider(scrapy.Spider):
     start_urls = [
         'http://quotes.toscrape.com/',
     ]
+    custom_settings = {
+        'FEED_URI': 'file:///Users/lianghong/Workspace/Python/scrapy/quotesbot/feed.jl',
+        'FEED_FORMAT': 'jsonlines',
+        'ITEM_PIPELINES': {
+            'quotesbot.pipelines.FilePipeline': 300
+        }
+    }
 
     def parse(self, response):
         for quote in response.css("div.quote"):
