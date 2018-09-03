@@ -92,3 +92,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+MAIL_FROM = 'lianghong@kyeegroup.com'
+MAIL_HOST = 'smtp.mxhichina.com'
+MAIL_PORT = '25'
+MAIL_USER = 'lianghong@kyeegroup.com'
+MAIL_PASS = '1qaz!QAZ'

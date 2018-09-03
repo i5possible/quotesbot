@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from quotesbot.items import QuotesItem, AuthorItem
+from scrapy.mail import MailSender
 
 
 class ToScrapeCSSSpider(scrapy.Spider):
@@ -39,3 +40,7 @@ class ToScrapeCSSSpider(scrapy.Spider):
             'author_description': (response.css("div.author-description").extract_first())
         })
         yield item
+
+    def closed(self, reason):
+        mailer = MailSender.from_settings(self.settings)
+        # mailer.send(to='lianghong@kyeegroup.com', subject='python', body='body')
