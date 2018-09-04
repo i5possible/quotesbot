@@ -4,7 +4,6 @@ from quotesbot.items import QuotesItem, AuthorItem
 from twisted.enterprise import adbapi
 import pymysql.cursors
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -54,8 +53,8 @@ class MysqlPipeline(object):
         return True
 
     def do_insert(self, cursor, item):
-        insert_sql = """
-            INSERT INTO quotes(author, tags, text)
-            VALUES (%s, %s, %s)
+        insert_sql = """INSERT INTO quotes(author, tags, text)
+        SELECT %s, %s, %s FROM dual
+        WHERE NOT exists (SELECT * FROM quotes WHERE text = %s); 
         """
-        cursor.execute(insert_sql, (item['author'], json.dumps(item['tags']), item['text']))
+        cursor.execute(insert_sql, (item['author'], json.dumps(item['tags']), item['text'], item['text']))
