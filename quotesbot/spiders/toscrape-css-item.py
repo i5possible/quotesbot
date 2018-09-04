@@ -13,7 +13,8 @@ class ToScrapeCSSSpider(scrapy.Spider):
         'FEED_URI': 'file:///Users/lianghong/Workspace/Python/scrapy/quotesbot/feed.jl',
         'FEED_FORMAT': 'jsonlines',
         'ITEM_PIPELINES': {
-            'quotesbot.pipelines.FilePipeline': 300
+            # 'quotesbot.pipeline_list.FilePipeline': 200,
+            'quotesbot.pipelines.mysql-pipeline.MysqlPipeline': 300
         }
     }
 
@@ -26,7 +27,7 @@ class ToScrapeCSSSpider(scrapy.Spider):
             })
             yield item
             author_href = quote.css("span > a::attr(href)").extract_first()
-            yield scrapy.Request(url=response.urljoin(author_href), callback=self.parse_author)
+            # yield scrapy.Request(url=response.urljoin(author_href), callback=self.parse_author)
 
         next_page_url = response.css("li.next > a::attr(href)").extract_first()
         if next_page_url is not None:

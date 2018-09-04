@@ -1,0 +1,1 @@
+create table quotes (id int(10) not null auto_increment, author varchar(50) default "", tags varchar(200) default "", text varchar(2000) default "", primary key(id));
